@@ -1,6 +1,6 @@
 {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "repeat": ["Happiness Score", "Social Support", "Generosity", "Freedom To Make Life Choices", "Perceptions Of Corruption", "Confidence In National Government"],
+    "repeat": ["Happiness Score", "Social Support", "Generosity", "Freedom To Make Life Choices", "Perceptions Of Corruption", "Confidence In Government"],
     "columns": 3,
     "params": [
     {

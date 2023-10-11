@@ -2,7 +2,7 @@
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
     "width": 530,
     "height": 400,
-    "mark": {"type": "line", "point": true},
+    "mark": {"type": "line", "point": {"size": 200}},
     "params": [
       {
         "name": "Top_N_Countries",

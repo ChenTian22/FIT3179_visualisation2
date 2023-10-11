@@ -1,0 +1,158 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "width": 530,
+    "height": 400,
+    "projection": {"type": "equalEarth"},
+    "params": [
+      {
+        "name": "Region_selection",
+        "bind": {
+          "input": "select",
+          "options": [
+            null,
+            "Central and Eastern Europe",
+            "Commonwealth of Independent States",
+            "East Asia",
+            "Latin America and Caribbean",
+            "Middle East and North Africa",
+            "North America and ANZ",
+            "South Asia",
+            "Southeast Asia",
+            "Sub-Saharan Africa",
+            "Western Europe"
+          ],
+          "labels": [
+            "Show All",
+            "Central and Eastern Europe",
+            "Commonwealth of Independent States",
+            "East Asia",
+            "Latin America and Caribbean",
+            "Middle East and North Africa",
+            "North America and ANZ",
+            "South Asia",
+            "Southeast Asia",
+            "Sub-Saharan Africa",
+            "Western Europe"
+          ],
+          "name": "Region: "
+        }
+      },
+      {
+        "name": "Year_slider",
+        "value": 2022,
+        "bind": {
+          "input": "range",
+          "min": 2010,
+          "max": 2022,
+          "step": 1,
+          "name": "Year: "
+        }
+      }
+    ],
+    "layer": [
+      {
+        "data": {
+          "url": "https://raw.githubusercontent.com/ChenTian22/FIT3179_visualisation2/main/vis2/js/ne_110m.json",
+          "format": {
+            "type": "topojson",
+            "feature": "ne_110m_admin_0_countries"
+          }
+        },
+        "transform": [
+          {
+            "calculate": "'Data is not available in ' + datum.properties.NAME",
+            "as": "note"
+          }
+        ],
+        "mark": {
+          "type": "geoshape",
+          "fill": "#ddd",
+          "stroke": "white",
+          "strokeWidth": 1
+        },
+        "encoding": {"tooltip": {"field": "note"}}
+      },
+      {
+        "data": {
+          "url": "https://raw.githubusercontent.com/ChenTian22/FIT3179_visualisation2/main/vis2/data/World_Happiness_Report.csv"
+        },
+        "transform": [
+          {
+            "lookup": "Country",
+            "from": {
+              "data": {
+                "url": "https://raw.githubusercontent.com/ChenTian22/FIT3179_visualisation2/main/vis2/js/ne_110m.json",
+                "format": {
+                  "type": "topojson",
+                  "feature": "ne_110m_admin_0_countries"
+                }
+              },
+              "key": "properties.NAME"
+            },
+            "as": "geo"
+          },
+          {"filter": "datum.Year == Year_slider"},
+          {"filter": "Region_selection == null || datum['Regional Indicator'] == Region_selection"}
+        ],
+        "mark": {"type": "geoshape", "stroke": "black", "strokeWidth": 0.5},
+        "encoding": {
+          "shape": {"field": "geo", "type": "geojson"},
+          "color": {
+            "field": "Happiness Score",
+            "type": "quantitative",
+            "title": "Happiness Score",
+            "scale": {
+              "type": "threshold",
+              "domain": [4, 5, 6, 7],
+              "range": ["#edf8fb", "#b2e2e2", "#66c2a4", "#2ca25f", "#006d2c"]
+            }
+          },
+          "tooltip": [
+            {"field": "Country", "type": "nominal", "title": "Country"},
+            {
+              "field": "Happiness Score",
+              "type": "quantitative",
+              "title": "Happiness Score",
+              "format": ".3s"
+            }
+          ]
+        }
+      },
+      {
+        "data": {
+          "url": "https://raw.githubusercontent.com/FIT3179/Vega-Lite/main/7_others/oceans.topojson",
+          "format": {"type": "topojson", "feature": "oceans"}
+        },
+        "mark": {"type": "geoshape", "fill": "skyblue"}
+      },
+      {
+        "data": {
+          "url": "https://raw.githubusercontent.com/ChenTian22/FIT3179_visualisation2/main/vis2/js/ne_110m.json",
+          "format": {"type": "topojson", "feature": "ne_110m_graticules_30"}
+        },
+        "mark": {
+          "type": "geoshape",
+          "fill": null,
+          "stroke": "darkgray",
+          "strokeWidth": 1,
+          "lineBreak": "auto"
+        }
+      },
+      {
+        "mark": {
+          "type": "text",
+          "fontSize": 9,
+          "fontWeight": "bold",
+          "color": "black"
+        },
+        "encoding": {
+          "x": {"value": 450},
+          "y": {"value": 10},
+          "text": {
+            "field": "The country with the happiest population is Finland"
+          }
+        }
+      }
+    ],
+  "config": {"title": {"font": "sans-serif", "fontSize": 16}}
+  }

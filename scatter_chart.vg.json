@@ -1,0 +1,95 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "width": 560,
+    "height": 400,
+    "mark": {"type": "point", "size": 100},
+    "params": [
+      {
+        "name": "Region_selection",
+        "value": "Central and Eastern Europe",
+        "bind": {
+          "input": "select",
+          "options": [
+            "Central and Eastern Europe",
+            "Commonwealth of Independent States",
+            "East Asia",
+            "Latin America and Caribbean",
+            "Middle East and North Africa",
+            "North America and ANZ",
+            "South Asia",
+            "Southeast Asia",
+            "Sub-Saharan Africa",
+            "Western Europe"
+          ],
+          "labels": [
+            "Central and Eastern Europe",
+            "Commonwealth of Independent States",
+            "East Asia",
+            "Latin America and Caribbean",
+            "Middle East and North Africa",
+            "North America and ANZ",
+            "South Asia",
+            "Southeast Asia",
+            "Sub-Saharan Africa",
+            "Western Europe"
+          ],
+          "name": "Region: "
+        }
+      },
+      {
+        "name": "Year_slider",
+        "value": 2022,
+        "bind": {
+          "input": "range",
+          "min": 2010,
+          "max": 2022,
+          "step": 1,
+          "name": "Year: "
+        }
+      },
+      {
+        "name": "legend_filter",
+        "select": {"type": "point", "fields": ["Country"]},
+        "bind": "legend"
+      }
+    ],
+    "data": {
+      "url": "https://raw.githubusercontent.com/ChenTian22/FIT3179_visualisation2/main/vis2/data/World_Happiness_Report.csv"
+    },
+    "encoding": {
+      "x": {
+        "field": "Happiness Score",
+        "type": "quantitative",
+        "axis": {"title": "Happiness Score", "tickCount": 7}
+      },
+      "y": {
+        "field": "Log GDP Per Capita",
+        "type": "quantitative",
+        "axis": {"title": "Log GDP Per Capita"}
+      },
+      "color": {
+        "field": "Country",
+        "type": "nominal",
+        "legend": {"orient": "top", "symbolLimit": 20, "columns": 7, "titleColor":"white"},
+        "scale": {"scheme":"category20"}
+      },
+      "opacity": {
+        "condition": {"param": "legend_filter", "value": 1},
+        "value": 0.1
+      },
+      "tooltip": [
+        {"field": "Country", "type": "nominal"},
+        {"field": "Happiness Score", "type": "quantitative"},
+        {"field": "Log GDP Per Capita", "type": "quantitative"}
+      ]
+    },
+    "transform": [
+      {"filter": "datum.Country"},
+      {"filter": "Year_slider == null || datum.Year == Year_slider"},
+      {
+        "filter": "Region_selection == null || datum['Regional Indicator'] == Region_selection"
+      }
+    ],
+    "config": {"title": {"font": "sans-serif", "fontSize": 16}}
+  }
+

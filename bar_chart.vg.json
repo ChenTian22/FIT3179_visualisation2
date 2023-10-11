@@ -1,0 +1,95 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "width": 530,
+    "height": 400,
+    "params": [
+      {
+        "name": "Year_slider",
+        "value": 2022,
+        "bind": {
+          "input": "range",
+          "min": 2010,
+          "max": 2022,
+          "step": 1,
+          "name": "Year: "
+        }
+      }
+    ],
+    "layer": [
+      {
+        "data": {
+          "url": "https://raw.githubusercontent.com/ChenTian22/FIT3179_visualisation2/main/vis2/data/World_Happiness_Report.csv"
+        },
+        "layer": [
+          {
+            "mark": "bar",
+            "transform": [
+              {"filter": "Year_slider == null || datum.Year == Year_slider"},
+              {
+                "filter": "indexof(datum['Regional Indicator'], 'Asia') !== -1"
+              }
+            ],
+            "encoding": {
+              "x": {
+                "field": "Country",
+                "type": "nominal",
+                "axis": {"labelAngle": 45},
+                "title": ""
+              },
+              "y": {"field": "Social Support", "type": "quantitative"},
+              "color": {"value": "#3EB39F"},
+              "tooltip": [
+                {"field": "Country", "type": "nominal", "title": "Country"},
+                {
+                  "field": "Social Support",
+                  "type": "quantitative",
+                  "title": "Social Support"
+                }
+              ]
+            }
+          },
+          {
+            "mark": "bar",
+            "transform": [
+              {"filter": "Year_slider == null || datum.Year == Year_slider"},
+              {
+                "filter": "indexof(datum['Regional Indicator'], 'Asia') !== -1"
+              },
+              {"filter": "datum['Social Support'] >= 0.8"},
+              {"calculate": "0.8", "as": "baseline"}
+            ],
+            "encoding": {
+              "x": {"field": "Country", "type": "nominal"},
+              "y": {
+                "field": "baseline",
+                "type": "quantitative",
+                "title": "Social Support"
+              },
+              "y2": {"field": "Social Support"},
+              "color": {"value": "#FF7377"}
+            }
+          }
+        ]
+      },
+      {
+        "data": {"values": [{}]},
+        "encoding": {"y": {"datum": 0.8}, "color": {"value": "#80393C"}},
+        "layer": [
+          {"mark": "rule"},
+          {
+            "mark": {
+              "type": "text",
+              "fontWeight": "bold",
+              "align": "right",
+              "baseline": "bottom",
+              "dx": -330,
+              "dy": -2,
+              "x": "width",
+              "text": "Average Social Support in the West"
+            }
+          }
+        ]
+      }
+    ],
+    "config": {"title": {"font": "sans-serif", "fontSize": 16}}
+  }

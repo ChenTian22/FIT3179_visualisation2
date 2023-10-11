@@ -1,0 +1,31 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "repeat": ["Happiness Score", "Social Support", "Generosity", "Freedom To Make Life Choices", "Perceptions Of Corruption", "Confidence In National Government"],
+    "columns": 3,
+    "params": [
+    {
+        "name": "Country_search",
+        "value": "Australia",
+        "bind": {
+        "input": "text",
+        "name": "Search for country: "
+        }
+    }
+    ],
+    "spec": {
+      "width": 140,
+      "data": {"url": "https://raw.githubusercontent.com/ChenTian22/FIT3179_visualisation2/main/vis2/data/World_Happiness_Report.csv"},
+      "mark": {"type": "bar", "color": "salmon"},
+      "transform": [
+        {"filter": "Country_search == null || datum['Country'] == Country_search"},
+        {"filter": "datum.Year >= 2015"}
+        ],
+      "encoding": {
+        "x": {"field": "Year", "type": "nominal"},
+        "y": {
+          "field": {"repeat": "repeat"},
+          "type": "quantitative"
+        }
+      }
+    }
+  }

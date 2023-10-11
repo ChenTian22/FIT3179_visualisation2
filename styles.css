@@ -1,0 +1,86 @@
+/* styles.css */
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.container {
+    display: flex;
+    width: 80%; /* Adjust the width as needed */
+}
+
+.left-text-panel {
+    background-color: #e0e0e0; /* Light gray left panel background */
+    width: 50px;
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    text-align: center;
+    width: 300px;
+}
+
+.right-text-panel {
+    background-color: #e0e0e0; /* Light gray left panel background */
+    width: 50px;
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    text-align: center;
+    width: 300px;
+}
+
+.left-chart-panel {
+    background-color: white; /* Light gray left panel background */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin-right: 20px;
+    padding: 20px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.right-chart-panel {
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin-left: 20px;
+    padding: 20px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+h1, h2 {
+    font-family: "Helvetica Neue", sans-serif;
+    color: #0074e4;
+}
+
+
+.title {
+    background-color: white; /* Title background color */
+    padding: 10px;
+    border-radius: 20px;
+    text-align: center;
+    color: white;
+    width: 80%; 
+    margin: 20px;
+}
+
+.conclusion {
+    background-color: white; /* Title background color */
+    padding: 10px;
+    border-radius: 20px;
+    text-align: center;
+    color: white;
+    width: 80%;
+    margin: 20px;
+    font-size: 10px;
+}
+
+.chart {
+    margin-top: 10px;
+}

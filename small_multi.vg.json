@@ -1,5 +1,6 @@
 {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "background": "#FFFFF0",
     "repeat": ["Happiness Score", "Social Support", "Generosity", "Freedom To Make Life Choices", "Perceptions Of Corruption", "Confidence In Government"],
     "columns": 3,
     "params": [
@@ -14,8 +15,9 @@
     ],
     "spec": {
       "width": 140,
+      "height": 180,
       "data": {"url": "https://raw.githubusercontent.com/ChenTian22/FIT3179_visualisation2/main/vis2/data/World_Happiness_Report.csv"},
-      "mark": {"type": "bar", "color": "salmon"},
+      "mark": {"type": "area", "color": "lightcyan", "point": {"size": 10}, "stroke": "darkcyan"},
       "transform": [
         {"filter": "Country_search == null || datum['Country'] == Country_search"},
         {"filter": "datum.Year >= 2015"}
@@ -25,7 +27,11 @@
         "y": {
           "field": {"repeat": "repeat"},
           "type": "quantitative"
-        }
+        },
+        "tooltip": [
+          {"field": "Year", "type": "quantitative"},
+          {"field": {"repeat": "repeat"}, "type": "quantitative", "format": ".2f"}
+        ]
       }
     }
   }

@@ -2,7 +2,8 @@
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
     "width": 560,
     "height": 400,
-    "mark": {"type": "point", "size": 100},
+    "background": "#FFFFF0",
+    "mark": {"type": "point", "size": 200},
     "params": [
       {
         "name": "Region_selection",

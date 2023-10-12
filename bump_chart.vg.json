@@ -3,6 +3,7 @@
     "width": 530,
     "height": 400,
     "mark": {"type": "line", "point": {"size": 200}},
+    "background": "#FFFFF0",
     "params": [
       {
         "name": "Top_N_Countries",
@@ -37,7 +38,7 @@
     "encoding": {
       "x": {"field": "Year", "type": "ordinal", "axis": {"grid": true}},
       "y": {"field": "ranking", "type": "ordinal", "title": "Rank"},
-      "color": {"field": "Country", "type": "nominal"},
+      "color": {"field": "Country", "type": "nominal", "scale": {"scheme":"category20"}},
       "opacity": {
         "condition": {"param": "legend_filter", "value": 1},
         "value": 0.1

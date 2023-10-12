@@ -4,74 +4,103 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f0f0f0;
+    background-color: #fee6ce;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 }
 
+#background {
+    background-image: url('smiley_bg.jpg'); 
+    background-size: cover; 
+    background-repeat: no-repeat;
+    background-attachment: fixed; 
+    background-blend-mode: overlay;
+}
+
 .container {
     display: flex;
-    width: 80%; /* Adjust the width as needed */
+    width: 80%;
 }
 
 .left-text-panel {
-    background-color: #e0e0e0; /* Light gray left panel background */
+    background-color: #FCF55F;
     width: 50px;
     padding: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    border-radius: 5px;
-    text-align: center;
+    border-radius: 10px;
+    text-align: left;
     width: 300px;
 }
 
 .right-text-panel {
-    background-color: #e0e0e0; /* Light gray left panel background */
+    background-color: #FCF55F;
     width: 50px;
     padding: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    border-radius: 5px;
-    text-align: center;
+    border-radius: 10px;
+    text-align: left;
     width: 300px;
 }
 
 .left-chart-panel {
-    background-color: white; /* Light gray left panel background */
+    background-color: #FFFFF0; 
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     margin-right: 20px;
     padding: 20px;
-    border-radius: 5px;
+    border-radius: 10px;
     text-align: center;
 }
 
 .right-chart-panel {
-    background-color: white;
+    background-color: #FFFFF0;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     margin-left: 20px;
     padding: 20px;
-    border-radius: 5px;
+    border-radius: 10px;
     text-align: center;
 }
 
-h1, h2 {
-    font-family: "Helvetica Neue", sans-serif;
-    color: #0074e4;
+h1{
+    font-family: "Impact", sans-serif;
+    font-size: 45px;
+    font-weight: lighter;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+h2 {
+    font-family: "Bsaskerville", serif;
+    font-size: 32px;
+    font-weight: bolder;
+    color: #DC143C;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    text-decoration:underline;
+    text-align: center;
+}
+
+p {
+    font-family: "american typewriter", serif;
+    font-size: 18px;
+    font-weight: lighter;
+    color: #913831;
 }
 
 
 .title {
-    background-color: white; /* Title background color */
+    background-color: #F4C430; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     padding: 10px;
     border-radius: 20px;
     text-align: center;
-    color: white;
     width: 80%; 
     margin: 20px;
 }
 
 .conclusion {
-    background-color: white; /* Title background color */
+    background-color: #F4C430;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     padding: 10px;
     border-radius: 20px;
     text-align: center;
@@ -83,4 +112,8 @@ h1, h2 {
 
 .chart {
     margin-top: 10px;
+}
+
+.highlight {
+    font-weight: 1000; 
 }

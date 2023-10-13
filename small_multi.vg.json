@@ -14,7 +14,7 @@
     }
     ],
     "spec": {
-      "width": 140,
+      "width": 150,
       "height": 180,
       "data": {"url": "https://raw.githubusercontent.com/ChenTian22/FIT3179_visualisation2/main/vis2/data/World_Happiness_Report.csv"},
       "mark": {"type": "area", "color": "lightcyan", "point": {"size": 10}, "stroke": "darkcyan"},

@@ -1,6 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "width": 560,
+  "width": 600,
   "height": 400,
   "background": "#FFFFF0",
   "mark": {"type": "point", "size": 200},

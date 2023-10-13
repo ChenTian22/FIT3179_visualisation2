@@ -26,9 +26,7 @@
             "mark": "bar",
             "transform": [
               {"filter": "Year_slider == null || datum.Year == Year_slider"},
-              {
-                "filter": "indexof(datum['Regional Indicator'], 'Asia') !== -1"
-              }
+              {"filter": "indexof(datum['Regional Indicator'], 'Asia') !== -1"}
             ],
             "encoding": {
               "x": {
@@ -38,15 +36,7 @@
                 "title": ""
               },
               "y": {"field": "Social Support", "type": "quantitative"},
-              "color": {"value": "#3EB39F"},
-              "tooltip": [
-                {"field": "Country", "type": "nominal", "title": "Country"},
-                {
-                  "field": "Social Support",
-                  "type": "quantitative",
-                  "title": "Social Support"
-                }
-              ]
+              "color": {"value": "#3EB39F"}
             }
           },
           {
@@ -67,15 +57,32 @@
                 "title": "Social Support"
               },
               "y2": {"field": "Social Support"},
-              "color": {"value": "#FF7377"},
-              "tooltip": [
-                {"field": "Country", "type": "nominal", "title": "Country"},
-                {
-                  "field": "Social Support",
-                  "type": "quantitative",
-                  "title": "Social Support"
-                }
-              ]
+              "color": {"value": "#FF7377"}
+            }
+          },
+          {
+            "transform": [
+              {"filter": "indexof(datum['Regional Indicator'], 'Asia') !== -1"},
+              {"filter": "Year_slider == null || datum.Year == Year_slider"}
+            ],
+            "mark": {
+              "type": "text",
+              "align": "left",
+              "baseline": "middle",
+              "dx": -10,
+              "dy": -5,
+              "color": "black",
+              "fontWeight":"bold",
+              "fontSize":12
+            },
+            "encoding": {
+              "x": {
+                "field": "Country",
+                "type": "nominal",
+                "title": ""
+              },
+              "y": {"field": "Social Support", "type": "quantitative"},
+              "text": { "field": "Social Support", "type": "quantitative", "format": ".2f"}
             }
           }
         ]
@@ -83,19 +90,28 @@
       {
         "data": {"values": [{}]},
         "encoding": {"y": {"datum": 0.8}, "color": {"value": "#80393C"}},
+        "transform": [{
+          "calculate": "'Average; Western; Social; Support'",
+          "as": "text_annotation_raw"
+        },
+        {
+          "calculate": "split(datum.text_annotation_raw, ';')",
+          "as": "text_annotation"
+        }],
         "layer": [
           {"mark": "rule"},
           {
             "mark": {
               "type": "text",
               "fontWeight": "bold",
-              "align": "right",
+              "align": "left",
               "baseline": "bottom",
-              "dx": -330,
-              "dy": -2,
+              "dx": 2,
+              "dy": -13,
               "x": "width",
-              "text": "Average Social Support in the West"
-            }
+              "fontSize": 11
+            },
+            "encoding": {"text":{"field":"text_annotation", "type": "nominal"}}
           }
         ]
       }

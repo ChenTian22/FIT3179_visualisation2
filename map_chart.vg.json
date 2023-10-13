@@ -153,6 +153,135 @@
             "field": "The country with the happiest population is Finland"
           }
         }
+      },
+      {
+        "data": {
+          "url": "https://raw.githubusercontent.com/ChenTian22/FIT3179_visualisation2/main/vis2/data/World_Happiness_Report.csv"
+        },
+        "transform": [
+          {"filter": "datum['Country'] == 'Finland' && datum.Year >= 2016"},
+          {"filter": "Year_slider == null || datum.Year == Year_slider"},
+          {"filter": "Region_selection == null || datum['Regional Indicator'] == Region_selection"},
+          {
+            "calculate": "'The happiest country is Finland,; with a score of ' + datum['Happiness Score']",
+            "as": "text_annotation_raw"
+          },
+          {
+            "calculate": "split(datum.text_annotation_raw, ';')",
+            "as": "text_annotation"
+          }
+        ],
+        "mark": {
+          "type": "text",
+          "align": "right",
+          "baseline": "middle",
+          "dx": 160,
+          "dy": -135,
+          "fontSize": 11.5,
+          "fontStyle": "italic",
+          "fontWeight":"bolder",
+          "color": "red"
+        },
+        "encoding": {
+          "text": {"field": "text_annotation", "type": "nominal"},
+          "color": {"value": "#FFDB58"}
+        }
+      },
+      {
+        "data": {
+          "url": "https://raw.githubusercontent.com/ChenTian22/FIT3179_visualisation2/main/vis2/data/World_Happiness_Report.csv"
+        },
+        "transform": [
+          {"filter": "datum['Country'] == 'Denmark' && (datum.Year == 2010 || datum.Year == 2011 || datum.Year == 2014)"},
+          {"filter": "Year_slider == null || datum.Year == Year_slider"},
+          {"filter": "Region_selection == null || datum['Regional Indicator'] == Region_selection"},
+          {
+            "calculate": "'The happiest country is ' + datum['Country'] + ',; with a score of ' + datum['Happiness Score']",
+            "as": "text_annotation_raw"
+          },
+          {
+            "calculate": "split(datum.text_annotation_raw, ';')",
+            "as": "text_annotation"
+          }
+        ],
+        "mark": {
+          "type": "text",
+          "align": "right",
+          "baseline": "middle",
+          "dx": 160,
+          "dy": -123,
+          "fontSize": 11.5,
+          "fontStyle": "italic",
+          "fontWeight":"bolder"
+        },
+        "encoding": {
+          "text": {"field": "text_annotation", "type": "nominal"},
+          "color": {"value": "#FFFDD0"}
+        }
+      },
+      {
+        "data": {
+          "url": "https://raw.githubusercontent.com/ChenTian22/FIT3179_visualisation2/main/vis2/data/World_Happiness_Report.csv"
+        },
+        "transform": [
+          {"filter": "(datum['Country'] == 'Switzerland' && datum.Year == 2012) || (datum['Country'] == 'Norway' && datum.Year == 2015)"},
+          {"filter": "Year_slider == null || datum.Year == Year_slider"},
+          {"filter": "Region_selection == null || datum['Regional Indicator'] == Region_selection"},
+          {
+            "calculate": "'The happiest country is ' + datum['Country'] + ',; with a score of ' + datum['Happiness Score']",
+            "as": "text_annotation_raw"
+          },
+          {
+            "calculate": "split(datum.text_annotation_raw, ';')",
+            "as": "text_annotation"
+          }
+        ],
+        "mark": {
+          "type": "text",
+          "align": "right",
+          "baseline": "middle",
+          "dx": 160,
+          "dy": -115,
+          "fontSize": 11.5,
+          "fontStyle": "italic",
+          "fontWeight":"bolder"
+        },
+        "encoding": {
+          "text": {"field": "text_annotation", "type": "nominal"},
+          "color": {"value": "#FFFDD0"}
+        }
+      },
+      {
+        "data": {
+          "url": "https://raw.githubusercontent.com/ChenTian22/FIT3179_visualisation2/main/vis2/data/World_Happiness_Report.csv"
+        },
+        "transform": [
+          {"filter": "datum['Country'] == 'Canada' && datum.Year == 2013"},
+          {"filter": "Year_slider == null || datum.Year == Year_slider"},
+          {"filter": "Region_selection == null || datum['Regional Indicator'] == Region_selection"},
+          {
+            "calculate": "'The happiest country is ' + datum['Country'] + ',; with a score of ' + datum['Happiness Score']",
+            "as": "text_annotation_raw"
+          },
+          {
+            "calculate": "split(datum.text_annotation_raw, ';')",
+            "as": "text_annotation"
+          }
+        ],
+        "mark": {
+          "type": "text",
+          "align": "right",
+          "baseline": "middle",
+          "dx": 10,
+          "dy": -120,
+          "fontSize": 11.5,
+          "fontStyle": "italic",
+          "fontWeight":"bolder"
+        },
+        "encoding": {
+          "text": {"field": "text_annotation", "type": "nominal"},
+          "color": {"value": "#FFFDD0"}
+        }
       }
     ],
   "config": {"title": {"font": "sans-serif", "fontSize": 16}}

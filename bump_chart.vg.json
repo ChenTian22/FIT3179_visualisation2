@@ -2,7 +2,6 @@
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
     "width": 530,
     "height": 400,
-    "mark": {"type": "line", "point": {"size": 200}},
     "background": "#FFFFF0",
     "params": [
       {
@@ -15,43 +14,77 @@
           "step": 1,
           "name": "Top N Countries: "
         }
-      },
-      {
-        "name": "legend_filter",
-        "select": {"type": "point", "fields": ["Country"]},
-        "bind": "legend"
       }
     ],
-    "data": {
-      "url": "https://raw.githubusercontent.com/ChenTian22/FIT3179_visualisation2/main/vis2/data/World_Happiness_Report.csv"
-    },
-    "transform": [
+    "layer": [
       {
-        "sort": [{"field": "Happiness Score", "order": "descending"}],
-        "window": [{"op": "rank", "as": "ranking"}],
-        "groupby": ["Year"]
-      },
-      {
-        "filter": "datum['ranking'] <= Top_N_Countries && datum['Year'] >= 2010 "
-      }
-    ],
-    "encoding": {
-      "x": {"field": "Year", "type": "ordinal", "axis": {"grid": true}},
-      "y": {"field": "ranking", "type": "ordinal", "title": "Rank"},
-      "color": {"field": "Country", "type": "nominal", "scale": {"scheme":"category20"}},
-      "opacity": {
-        "condition": {"param": "legend_filter", "value": 1},
-        "value": 0.1
-      },
-      "tooltip": [
-        {"field": "Country", "type": "nominal", "title": "Country"},
-        {
-          "field": "Happiness Score",
-          "type": "quantitative",
-          "title": "Happiness Score"
+        "mark": {"type": "line", "point": {"size": 200}},
+        "data": {
+          "url": "https://raw.githubusercontent.com/ChenTian22/FIT3179_visualisation2/main/vis2/data/World_Happiness_Report.csv"
+        },
+        "params": [{
+          "name": "legend_filter",
+          "select": {"type": "point", "fields": ["Country"]},
+          "bind": "legend"
+        }],
+        "transform": [
+          {
+            "sort": [{"field": "Happiness Score", "order": "descending"}],
+            "window": [{"op": "rank", "as": "ranking"}],
+            "groupby": ["Year"]
+          },
+          {"filter": "datum['ranking'] <= Top_N_Countries && datum['Year'] >= 2010 "}
+        ],
+        "encoding": {
+          "x": {"field": "Year", "type": "ordinal", "axis": {"grid": true}},
+          "y": {"field": "ranking", "type": "ordinal", "title": "Rank"},
+          "color": {"field": "Country", "type": "nominal", "scale": {"scheme":"category20"}},
+          "opacity": {
+            "condition": {"param": "legend_filter", "value": 1},
+            "value": 0.1
+          },
+          "tooltip": [
+            {"field": "Country", "type": "nominal", "title": "Country"},
+            {
+              "field": "Happiness Score",
+              "type": "quantitative",
+              "title": "Happiness Score"
+            }
+          ]
         }
-      ]
-    },
+      },
+      {
+        "data": {
+          "url": "https://raw.githubusercontent.com/ChenTian22/FIT3179_visualisation2/main/vis2/data/World_Happiness_Report.csv"
+        },
+        "transform": [
+          {"filter": "Top_N_Countries == 5"},
+          {"filter": "datum['Country'] == 'Finland'"},
+          {
+            "calculate": "'Finland has maintained in; the 1st place since 2015'",
+            "as": "text_annotation_raw"
+          },
+          {
+            "calculate": "split(datum.text_annotation_raw, ';')",
+            "as": "text_annotation"
+          }
+        ],
+        "mark": {
+          "type": "text",
+          "align": "right",
+          "baseline": "middle",
+          "dx": 210,
+          "dy": -190,
+          "fontSize": 11.5,
+          "fontStyle": "italic",
+          "fontWeight":"bolder"
+        },
+        "encoding": {
+          "text": {"field": "text_annotation", "type": "nominal"},
+          "color": {"value": "#FFAA33"}
+        }
+      }
+    ],
     "config": {"title": {"font": "sans-serif", "fontSize": 16}}
   }
   
